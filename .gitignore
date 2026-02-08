@@ -1,0 +1,9 @@
+#log files
+logs/*.txt
+logs/*.log
+#python cache
+__pycache__/
+*.pyc
+
+#OS files
+.DS_store
