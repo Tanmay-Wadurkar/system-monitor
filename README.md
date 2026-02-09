@@ -60,6 +60,71 @@ That's it! The monitor will:
 - Display color-coded results in your terminal
 
 ---
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+The easiest way to run this monitor is using Docker:
+
+```bash
+# Pull and run from Docker Hub
+docker run --rm -v $(pwd)/logs:/app/logs tanmaywadurkar/system-monitor:latest
+```
+
+Replace `tanmaywadurkar` with your Docker Hub username.
+
+### What This Does
+
+- Downloads the pre-built image (if not already downloaded)
+- Runs the system monitor
+- Saves reports to your local `logs/` directory
+- Automatically removes container when done
+
+### Docker Hub
+
+**Image:** [tanmaywadurkar/system-monitor](https://hub.docker.com/r/tanmaywadurkar/system-monitor)
+
+**Tags:**
+- `latest` - Most recent version
+
+### Build Locally
+
+If you want to build the image yourself:
+
+```bash
+# Clone the repository
+git clone https://github.com/Tanmay-Wadurkar/system-monitor.git
+cd system-monitor
+
+# Build the image
+docker build -t system-monitor:latest .
+
+# Run it
+docker run --rm -v $(pwd)/logs:/app/logs system-monitor:latest
+```
+
+### Using Docker Compose
+
+```bash
+# Run with docker-compose
+docker compose run --rm system-monitor
+
+# Or build and run in one command
+docker compose up --build
+```
+
+### Requirements
+
+- Docker installed (version 20.10+)
+- No other dependencies needed!
+
+### Benefits of Docker Version
+
+- ✅ No manual dependency installation
+- ✅ Works on any system with Docker
+- ✅ Consistent environment
+- ✅ Easy to share and deploy
+- ✅ Isolated from host system
 
 ## 📁 Project Structure
 
