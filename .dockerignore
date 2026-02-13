@@ -1,0 +1,25 @@
+# Git files
+.git
+.gitignore
+
+# Logs (we'll use volumes for these)
+logs/
+*.log
+*.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Documentation
+README.md
+*.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backups
+*.backup
+*.old

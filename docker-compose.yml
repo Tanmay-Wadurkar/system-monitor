@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  system-monitor:
+    image: system-monitor:latest
+    container_name: system-monitor
+    build: .
+    volumes:
+      - type: bind
+        source: ./logs
+        target: /app/logs
+    environment:
+      - TZ=Asia/Kolkata
+    

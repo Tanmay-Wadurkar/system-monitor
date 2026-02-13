@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Make scripts executable
+      run: chmod +x monitor.sh analyze.py
+    
+    - name: Test monitor.sh syntax
+      run: bash -n monitor.sh
+    
+    - name: Test analyze.py syntax
+      run: python3 -m py_compile analyze.py
+    
+    - name: Check if scripts are executable
+      run: |
+        if [ -x monitor.sh ] && [ -x analyze.py ]; then
+          echo "✓ Scripts are executable"
+        else
+          echo "✗ Scripts are not executable"
+          exit 1
+        fi
+    
+    - name: Run monitor (dry run)
+      run: |
+        mkdir -p logs
+        ./monitor.sh
+        if [ -f logs/report_*.txt ]; then
+          echo "✓ Monitor created report successfully"
+        else
+          echo "✗ Monitor failed to create report"
+          exit 1
+        fi
+    
+    - name: Test analyzer
+      run: |
+        python3 analyze.py logs/report_*.txt
+        echo "✓ Analyzer ran successfully"
